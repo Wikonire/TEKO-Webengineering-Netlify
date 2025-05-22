@@ -1,6 +1,6 @@
 [build]
 command = "npm run prerender"
-publish = "dist/Teko-Webengineering-Netlify/browser"
+publish = "dist/teko-webengineering-netlify/browser"
 
 [[redirects]]
 from = "/*"

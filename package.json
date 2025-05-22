@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:ssr": "ng build && ng run Teko-Webengineering-Netlify:server",
-    "prerender": "NODE_OPTIONS=--trace-warnings ng run Teko-Webengineering-Netlify:prerender",
+    "prerender": "cross-env NODE_OPTIONS=--trace-warnings ng run Teko-Webengineering-Netlify:prerender",
     "serve:ssr:Teko-Webengineering-Netlify": "node dist/teko-webengineering-netlify/server/server.mjs"
   },
   "private": true,
