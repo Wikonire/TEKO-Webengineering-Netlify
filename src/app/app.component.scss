@@ -32,6 +32,11 @@ nav a.pill {
   transition: background-color 0.3s ease;
   }
 
+nav a.active-route {
+  background-color: white;
+  text-decoration: underline;
+  color: #140f0f;
+  }
 nav a.pill:hover {
-  background-color: #e39617;
+  background-color: #f8c065;
   }

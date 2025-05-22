@@ -4,9 +4,9 @@
     <nav>
       <a
         class="pill"
-        [routerLink]="'/knowtism'"
-        target="_blank"
-        rel="noopener"
+        routerLink="/knowtism"
+        routerLinkActive="active-route"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
         KnowTism
       </a>
