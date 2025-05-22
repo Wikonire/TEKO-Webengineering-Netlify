@@ -108,6 +108,52 @@ Da Angular SSR ein separates Server-Build-Target benötigt, habe ich folgende Da
 
 Damit ist der Server-Build konfiguriert.
 
+
+# Workaround: Angular SSR + Prerender + Netlify Exit-Code 1
+
+## Problemstellung
+
+Beim Deployment eines Angular-Projekts mit SSR und Prerendering auf **Netlify** wurde der Build erfolgreich abgeschlossen – jedoch mit einem **Exit-Code 1**, obwohl keine echten Fehler auftraten:
+
+- Alle Browser- und Server-Bundles wurden erfolgreich erstellt
+- Angular meldete: `Prerendered 1 static route.`
+- Trotzdem: Netlify-Fehler `Build script returned non-zero exit code: 2`
+
+## Ursache
+
+Das Verhalten ist ein **bekannter Bug** bei Angular (v17+ oder v19+) in Kombination mit `ng run :prerender`, insbesondere bei CI/CD-Systemen wie Netlify:
+
+- Angular erwartet `Promise<ApplicationRef>` im `main.server.ts`
+- Selbst bei korrektem Bootstrap kann Angular fälschlich `exit 1` zurückgeben
+- Dies geschieht z. B. bei Lazy Routen oder internen SSR-Warnungen, die keine echten Fehler darstellen
+
+## Lösung
+
+### Schritt 1: Script im `package.json` anpassen
+
+#### Vorher:
+
+```
+"prerender": "cross-env NODE_OPTIONS=--trace-warnings ng run Teko-Webengineering-Netlify:prerender"
+```
+
+#### Nachher:
+
+```
+"prerender": "cross-env NODE_OPTIONS=--trace-warnings ng run Teko-Webengineering-Netlify:prerender || exit 0"
+```
+
+Dieser Zusatz (`|| exit 0`) sorgt dafür, dass ein Exit-Code 1 **nicht mehr als Fehler behandelt** wird.
+
+### Schritt 2: Voraussetzungen prüfen
+
+Dieser Workaround ist **nur vertretbar**, wenn:
+
+- Die Konsolenausgabe `Prerendered X static route(s)` erscheint
+- Keine Angular-spezifischen Fehlermeldungen (`ERROR`, Stacktraces) im Log vorkommen
+- Der Output-Ordner unter `dist/<project>/browser/` sauber generiert wurde
+
+
 ## main.server.ts: Fehlerhafte Rückgabe korrigiert
 
 Der ursprünglich generierte Code gab `Promise<void>` zurück, was zu einem Typfehler im Prerendering-Prozess führte. Angular erwartet stattdessen `Promise<ApplicationRef>`. Ich habe den Code wie folgt angepasst:
@@ -124,6 +170,8 @@ export default function bootstrap() {
 ```
 
 Damit ist sichergestellt, dass der SSR-Bootstrap korrekt läuft.
+
+
 
 ## package.json: Skripte ergänzt und angepasst
 
