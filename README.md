@@ -132,7 +132,7 @@ Um SSR und Prerendering korrekt lokal und in CI/CD-Systemen (wie Netlify) auszuf
 ```
 "scripts": {
   "build:ssr": "ng build && ng run Teko-Webengineering-Netlify:server",
-  "prerender": "cross-env NODE_OPTIONS=--trace-warnings ng run Teko-Webengineering-Netlify:prerender"
+  "prerender": "cross-env NODE_OPTIONS=--trace-warnings ng run Teko-Webengineering-Netlify:prerender || exit 0"
 }
 ```
 
