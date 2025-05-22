@@ -14,6 +14,33 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/teko-webengineering-netlify-server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "sourceMap": false,
+              "optimization": true
+            },
+            "development": {
+              "sourceMap": true,
+              "optimization": false
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "browserTarget": "Teko-Webengineering-Netlify:build:production",
+            "serverTarget": "Teko-Webengineering-Netlify:server:production",
+            "routes": ["/"]
+          }
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
