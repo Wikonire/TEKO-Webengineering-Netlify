@@ -1,1 +1,6 @@
 ./.idea/*
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/TEKO-Webengineering-Netlify.iml
+/.idea/vcs.xml
