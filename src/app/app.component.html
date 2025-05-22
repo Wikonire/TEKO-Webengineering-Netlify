@@ -4,6 +4,14 @@
     <nav>
       <a
         class="pill"
+        routerLink="/welcome"
+        routerLinkActive="active-route"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Welcome
+      </a>
+      <a
+        class="pill"
         routerLink="/knowtism"
         routerLinkActive="active-route"
         [routerLinkActiveOptions]="{ exact: true }"
