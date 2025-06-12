@@ -15,10 +15,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap; /* ermöglicht Umbruch */
   }
 
 .site-main {
   padding: 2rem;
+  }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
   }
 
 nav a.pill {
@@ -30,12 +36,46 @@ nav a.pill {
   text-decoration: none;
   font-weight: 600;
   transition: background-color 0.3s ease;
+  margin: 0 0.5rem 0.5rem 0;
   }
 
 nav a.active-route {
   text-decoration: underline;
   color: #140f0f;
   }
+
 nav a.pill:hover {
   background-color: #f8c065;
+  }
+
+
+/* weniger Padding, Inhalt zentriert */
+@media (max-width: 768px) {
+  .site-header,
+  .site-footer {
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+    }
+
+  .site-main {
+    padding: 1rem;
+    }
+
+  nav {
+    justify-content: center;
+    }
+  }
+
+/* sehr kleine Bildschirme (Smartphones)*/
+@media (max-width: 480px) {
+  nav a.pill {
+    width: 100%;
+    text-align: center;
+    margin-right: 0;
+    }
+
+  .site-header h1, .site-footer {
+    font-size: 1rem;
+    }
   }
