@@ -6,25 +6,24 @@
   }
 
 .quote-item {
-  flex: 1 1 300px;
-  max-width: 400px;
+  flex: 1 1 30rem;
+  max-width: 40rem;
   }
 
 .quote-item  {
-  width: 300px;
+  width: 30rem;
   display: block;
   background-color: #e39617;
   border-radius: 8px;
   }
 
-/* Responsive Anpassungen */
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .quote-item {
     flex: 1 1 45%; /* Zwei  pro Reihe */
     }
   }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   .quote-item {
     flex: 1 1 100%; /* Ein  pro Reihe */
     }
