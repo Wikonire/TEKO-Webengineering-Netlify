@@ -1,0 +1,24 @@
+/* Container zentriert, maximale Breite */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  }
+
+/* Grössere Schrift und Abstand bei breiten Bildschirmen */
+@media (min-width: 600px) {
+  .container {
+    padding: 40px;
+    font-size: 1.2em;
+    }
+  }
+
+/* Mobile-first: Kleinere Schrift bei sehr kleinen Bildschirmen */
+@media (max-width: 599px) {
+  .container {
+    padding: 10px;
+    font-size: 1em;
+    }
+  }
